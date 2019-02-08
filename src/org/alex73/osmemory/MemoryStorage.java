@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class MemoryStorage {
     static final Pattern RE_OBJECT_CODE = Pattern.compile("([nwr])([0-9]+)");
 
-    // notes with tags sorted list
+    // nodes with tags sorted list
     protected final List<IOsmNode> nodes = new ArrayList<>();
     // ways sorted list
     protected final List<IOsmWay> ways = new ArrayList<>();

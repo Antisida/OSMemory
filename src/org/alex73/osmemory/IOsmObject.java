@@ -25,6 +25,7 @@ import java.util.Map;
  * Base interface for all OSM object.
  * 
  * Tag keys stored and processed as index instead string value.
+ * Ключи тегов хранятся и обрабатываются как index instead string value.
  */
 public interface IOsmObject {
     public static final int TYPE_NODE = 1;
@@ -33,6 +34,7 @@ public interface IOsmObject {
 
     /**
      * Object type: 1-node, 2-way,3-relation. It should be int instead enum for performance optimization.
+     * Тип объекта: 1-узел, 2-ходовой,3-отношение. Он должен быть int вместо enum для оптимизации производительности
      */
     int getType();
 

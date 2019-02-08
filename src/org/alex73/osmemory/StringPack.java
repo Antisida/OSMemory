@@ -28,6 +28,10 @@ import java.util.Set;
  * direct string usage.
  * 
  * That allow to minimize storage memory and use short type instead string.
+ *
+ * Класс для хранения некоторых часто используемых строк.
+ * Каждая строка имеет собственный короткий идентификатор, который используется в object прямое использование строки.
+ *
  */
 public class StringPack {
     final protected Map<String, Short> tagCodes = new HashMap<>();
