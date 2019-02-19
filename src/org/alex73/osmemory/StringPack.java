@@ -34,18 +34,22 @@ import java.util.Set;
  *
  */
 public class StringPack {
-    final protected Map<String, Short> tagCodes = new HashMap<>();
-    final protected Map<Short, String> tagNames = new HashMap<>();
+    final protected Map<String, Short> tagCodes = new HashMap<>();       // две мапы в одной ключ - строка, в другой ключ - код строки
+    final protected Map<Short, String> tagNames = new HashMap<>();         // чтобы можно было искать и по строки и по ключу
 
+    /**
+     * Возвращает код, соответствующий строки по содержанию строки
+     * причем, Если строки нет в мапе, то она добавляется
+     */
     public synchronized short getTagCode(String tagName) {
-        Short v = tagCodes.get(tagName);
+        Short v = tagCodes.get(tagName);     // v - код строки соответстующий имени tagName
         short result;
-        if (v == null) {
-            result = (short) tagCodes.size();
+        if (v == null) {    // если строка не найдена, то
+            result = (short) tagCodes.size();   // result равен длине мапы
             if (result >= Short.MAX_VALUE) {
                 throw new RuntimeException("Too many tag keys: more than " + Short.MAX_VALUE);
             }
-            tagCodes.put(tagName, result);
+            tagCodes.put(tagName, result);   // помещаем строку, которую искали в мапу
             tagNames.put(result, tagName);
         } else {
             result = v;
@@ -53,10 +57,16 @@ public class StringPack {
         return result;
     }
 
+    /**
+     * Возвращает строку, по коду
+    */
     public String getTagName(short tagKey) {
         return tagNames.get(tagKey);
     }
 
+    /**
+     * Возвращает все строки
+     */
     public Set<String> getTagNames() {
         return tagCodes.keySet();
     }

@@ -29,14 +29,14 @@ import java.util.TreeMap;
 public abstract class OsmBase implements IOsmObject {
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
-    protected final long id;
-    protected final short[] tagKeys;
-    protected final byte[][] tagValues;
-    protected final short user;
+    protected final long id;                         // id ОСМ объекта
+    protected final short[] tagKeys;                  // массив индексов ключей <k =
+    protected final byte[][] tagValues;                 // массив индексов значений <v =
+    protected final short user;                           // id Юзера
 
     public OsmBase(long id, int tagsCount, short user) {
         this.id = id;
-        tagKeys = new short[tagsCount];
+        tagKeys = new short[tagsCount];                     // создание массива ключей
         tagValues = new byte[tagsCount][];
         this.user = user;
     }

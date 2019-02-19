@@ -34,19 +34,24 @@ import java.util.regex.Pattern;
 public class MemoryStorage {
     static final Pattern RE_OBJECT_CODE = Pattern.compile("([nwr])([0-9]+)");
 
-    // nodes with tags sorted list
+    // nodes with tags sorted list. массив для точек
     protected final List<IOsmNode> nodes = new ArrayList<>();
     // ways sorted list
     protected final List<IOsmWay> ways = new ArrayList<>();
     // relations sorted list
     protected final List<IOsmRelation> relations = new ArrayList<>();
 
-    // simple nodes, i.e. without tags
+    // simple nodes, i.e. without tags. точки без тегов хранятся в трех массивах.
     protected long[] simpleNodeIds = new long[4 * 1024 * 1024];
     protected int[] simpleNodeLats = new int[4 * 1024 * 1024];
     protected int[] simpleNodeLons = new int[4 * 1024 * 1024];
     protected int simpleNodeCount;
 
+    /**
+     * Мапы для тегов
+     * Мапы для ролей отношений
+     * Мапы для юзеров
+     */
     private final StringPack tagsPack = new StringPack();
     private final StringPack relationRolesPack = new StringPack();
     private final StringPack usersPack = new StringPack();
@@ -59,9 +64,10 @@ public class MemoryStorage {
 
     /**
      * Must be called after load data for optimization and some internal processing.
+     *
      */
     void finishLoading() throws Exception {
-        // check ID order
+        // check ID order. проверка порядка в массивах точек, точек с тегами, веев и релейшенов
         long prev = 0;
         for (int i = 0; i < simpleNodeCount; i++) {
             long id = simpleNodeIds[i];
@@ -109,6 +115,8 @@ public class MemoryStorage {
         return usersPack;
     }
 
+
+    //возвращает обьект ОСМ по id. Аргументы Лист объектов, id объекта
     private static <T extends IOsmObject> T getById(List<T> en, long id) {
         int i = binarySearch(en, id);
         return i < 0 ? null : en.get(i);

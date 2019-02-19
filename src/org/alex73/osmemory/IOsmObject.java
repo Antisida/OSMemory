@@ -23,9 +23,11 @@ import java.util.Map;
 
 /**
  * Base interface for all OSM object.
+ * Основной интерфес для всех ОСМ объектов, от которого наследуются интерфейсы IOsmNode, IOsmRelation, IOsmWay и
+ * абстрактный класс OsmBase
  * 
  * Tag keys stored and processed as index instead string value.
- * Ключи тегов хранятся и обрабатываются как index instead string value.
+ * Ключи тегов хранятся и обрабатываются как index вместо строковых значений .
  */
 public interface IOsmObject {
     public static final int TYPE_NODE = 1;
